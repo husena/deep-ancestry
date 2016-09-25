@@ -1,0 +1,58 @@
+﻿
+@model DeepAncestry.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "DeependAncestry";
+}
+<h1>DeependAncestry</h1>
+@using (Html.BeginForm("Index", "Search", FormMethod.Get))
+{
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                @Html.TextBoxFor(Model => Model.Name)
+            </div>
+            <div class="column">
+            @if (Model.AdvancedSearch)
+            {
+                <input type="submit" value="Advanced Search"/>
+            }
+            else
+            {
+                <input type="submit" value="Search" />
+            }
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <span>Gender: </span>
+                <span>@Html.CheckBoxFor(Model => Model.Male) Male</span>
+                <span>@Html.CheckBoxFor(Model => Model.Female) Female</span>
+            </div>
+            <div class="column">
+                @Html.ActionLink("Advanced search", "AdvancedSearch", "Advanced Search", null)
+            </div>
+        </div>
+        @if (Model.AdvancedSearch)
+        {
+            <div class="row">
+                <div class="column">
+                    <span>Direction: </span>
+                    <span>@Html.RadioButtonFor(Model => Model.Direction, "Ancestors") Ancestors</span>
+                    <span>@Html.RadioButtonFor(Model => Model.Direction, "Descendants") Descendants</span>
+                </div>
+                <div class="column">
+
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if ((Model.SearchResult != null) && (Model.SearchResult.Any()))
+{
+    @Html.Partial("_PeopleGrid", Model)
+
+}
+
+

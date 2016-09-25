@@ -1,0 +1,21 @@
+﻿
+@model DeepAncestry.Models.SearchViewModel
+
+<div class="grid-container">
+    <div class="grid-row">
+        <div class="grid-header grid-header-1">ID</div>
+        <div class="grid-header grid-header-2">NAME</div>
+        <div class="grid-header grid-header-3">GENDER</div>
+        <div class="grid-header grid-header-4">BIRTHPLACE</div>
+    </div>
+
+    @foreach (var item in Model.SearchResult)
+        {
+            <div class="grid-row">
+                <div class="grid-col grid-col-1">@item.ID</div>
+                <div class="grid-col grid-col-2">@item.Name</div>
+                <div class="grid-col grid-col-3">@item.Gender</div>
+                <div class="grid-col grid-col-4">@item.BirthPlace</div>
+            </div>
+        }
+</div>
